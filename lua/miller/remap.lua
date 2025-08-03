@@ -24,3 +24,10 @@ vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
+vim.keymap.set("n", "<leader>w", "<C-w>")
+
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+
+-- change a char or a word in a visualised piece of text
