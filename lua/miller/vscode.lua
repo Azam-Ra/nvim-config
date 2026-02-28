@@ -60,6 +60,10 @@ vim.keymap.set("n", "<leader>fg", function() vscode.action("workbench.action.fin
 -- Switch buffer (replaces Telescope buffers)
 vim.keymap.set("n", "<leader>fb", function() vscode.action("workbench.action.showAllEditorsByMostRecentlyUsed") end)
 
+-- Previous/next editor
+vim.keymap.set("n", "<leader>bp", function() vscode.action("workbench.action.navigateBack") end)
+vim.keymap.set("n", "<leader>bf", function() vscode.action("workbench.action.navigateForward") end)
+
 -- Go to symbol
 vim.keymap.set("n", "<leader>fs", function() vscode.action("workbench.action.gotoSymbol") end)
 
