@@ -32,8 +32,9 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<leader>w", "<C-w>")
 
-vim.keymap.set("n", "<leader>t", ":term<CR>i")
+vim.keymap.set("n", "<leader><leader>t", ":term<CR>i")
 vim.keymap.set("n", "<leader>T", "<C-w>v | <C-w>l | :term<CR>i")
+vim.keymap.set("n", "<leader>t", "<C-w>s | <C-w>j | :term<CR>i")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
 vim.keymap.set("n", "<leader><leader>do", ":DiffviewOpen<CR>")
