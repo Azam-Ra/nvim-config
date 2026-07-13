@@ -67,6 +67,7 @@ end)
 vim.keymap.set("n", "<leader><leader>s", function()
   if captured_line then
     vim.cmd(tostring(captured_line))
+    vim.cmd("normal! zz")
   else
     print("No line captured")
   end
