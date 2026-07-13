@@ -42,6 +42,10 @@ vim.keymap.set("n", "<leader><leader>dc", ":DiffviewClose<CR>")
 
 vim.keymap.set("v", "<leader>/", '"0y/\\V<C-r>0<CR>')
 
+vim.keymap.set("v", "<leader>l", function()
+  vim.lsp.buf.format()
+end, { desc = "Format selection" })
+
 -- vim.diagnostic related
 vim.keymap.set('n', 'gK', function()
   local new_config = not vim.diagnostic.config().virtual_lines
@@ -51,5 +55,21 @@ vim.keymap.set('n', 'gk', function()
   local new_config = not vim.diagnostic.config().virtual_text
   vim.diagnostic.config({ virtual_text = new_config })
 end, { desc = 'Toggle diagnostic virtual_lines' })
+
+-- set an orientation line
+local captured_line = nil
+
+vim.keymap.set("n", "<leader>s", function()
+  captured_line = vim.fn.line(".")
+  print("Captured line: " .. captured_line)
+end)
+
+vim.keymap.set("n", "<leader><leader>s", function()
+  if captured_line then
+    vim.cmd(tostring(captured_line))
+  else
+    print("No line captured")
+  end
+end)
 
 -- change a char or a word in a visualised piece of text
