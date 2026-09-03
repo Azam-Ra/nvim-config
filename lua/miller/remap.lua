@@ -40,7 +40,11 @@ vim.keymap.set("n", "<leader><leader>do", ":DiffviewOpen<CR>")
 vim.keymap.set("n", "<leader><leader>dh", ":DiffviewFileHistory<CR>")
 vim.keymap.set("n", "<leader><leader>dc", ":DiffviewClose<CR>")
 
-vim.keymap.set("v", "<leader>/", '"0y/\\V<C-r>0<CR>')
+vim.keymap.set("v", "<leader>/", '"0y/\\V<C-r>0<CR>zz')
+
+vim.keymap.set("n", "<leader><leader>f", function()
+  vim.lsp.buf.format({ timeout_ms = 1000 })
+end, { desc = "Format buffer" })
 
 vim.keymap.set("v", "<leader>l", function()
   vim.lsp.buf.format()

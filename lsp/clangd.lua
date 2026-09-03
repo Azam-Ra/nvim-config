@@ -61,7 +61,12 @@ end
 ---@field offsetEncoding? string
 
 return {
-  cmd = { 'clangd' },
+  cmd = {
+    'clangd',
+    '--query-driver=/usr/**,/opt/**,/bin/**',
+    '--background-index',
+    '--clang-tidy',
+  },
   filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
   root_markers = {
     '.clangd',
