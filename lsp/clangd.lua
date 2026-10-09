@@ -63,7 +63,7 @@ end
 return {
   cmd = {
     'clangd',
-    '--query-driver=/usr/**,/opt/**,/bin/**',
+    '--query-driver=/usr/**,/opt/**,/bin/**,/run/current-system/sw/bin/**',
     '--background-index',
     '--clang-tidy',
   },
