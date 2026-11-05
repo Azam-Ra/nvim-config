@@ -65,6 +65,36 @@ prompt is treated as one literal pattern:
 - A bare argument such as `lsp` is a literal directory path. Wildcards only work with `-g`.
 - `<C-k>` quotes the prompt text, and `<C-i>` quotes it and appends ` --iglob `.
 
+## Clipboard over SSH (`<leader>y`)
+
+`<leader>y` yanks to the `+` register. Over SSH there is no local clipboard tool, so
+`lua/miller/remap.lua` sets `vim.g.clipboard = "osc52"` when `SSH_TTY` is set. nvim then
+copies by sending an OSC 52 escape sequence, and the terminal on your local machine
+puts the text on its clipboard. This is copy only: paste locally with the terminal's
+paste shortcut (Cmd+V on macOS), because `"+p` reads nvim's internal register.
+
+For this to work, every layer between nvim and the local terminal must pass the sequence on.
+
+1. **tmux on the remote host** (if you run nvim inside tmux). Add to `~/.tmux.conf`
+   (here it is a symlink to `~/.config/tmux-config/tmux.conf`) and reload with
+   `tmux source ~/.tmux.conf`:
+
+   ```
+   set -g set-clipboard on
+   set -g allow-passthrough on
+   ```
+
+   The default `set-clipboard external` blocks applications inside tmux from setting
+   the clipboard. If you also run tmux locally on the Mac, add the same two lines there.
+
+2. **The local terminal must accept OSC 52.**
+   - iTerm2: Preferences, Profiles, Terminal, enable "Applications in terminal may
+     access clipboard".
+   - Kitty, WezTerm, Alacritty and Ghostty: enabled by default.
+   - Apple Terminal.app: not supported, use another terminal.
+
+To test, restart nvim, select text, press `<leader>y`, and paste locally.
+
 ## VS Code
 
 When `vim.g.vscode` is set (vscode-neovim), only `lua/miller/vscode.lua` is loaded and

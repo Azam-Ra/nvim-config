@@ -22,6 +22,11 @@ vim.keymap.set("x", "<leader>p", "\"_dP")
 vim.keymap.set("n", "<leader>d", "\"_d")
 vim.keymap.set("v", "<leader>d", "\"_d")
 
+-- Over SSH there is no local clipboard tool, so copy via OSC 52 (terminal escape sequence)
+if vim.env.SSH_TTY then
+  vim.g.clipboard = "osc52"
+end
+
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
