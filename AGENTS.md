@@ -95,6 +95,23 @@ For this to work, every layer between nvim and the local terminal must pass the 
 
 To test, restart nvim, select text, press `<leader>y`, and paste locally.
 
+## Completion
+
+`blink.cmp` provides automatic suggestions from LSP, paths, snippets, and buffer
+words. Configuration lives in `lua/miller/plugins/completion.lua`; shared LSP
+capabilities are set before servers start in `lua/miller/lsp.lua`.
+The Lua fuzzy matcher avoids native binary dependencies on NixOS.
+
+- `<C-n>` / `<C-p>` or arrow keys select suggestions; `<C-y>` accepts.
+- `<C-space>` opens completion or toggles documentation; `<C-e>` dismisses it.
+- `<Tab>` / `<S-Tab>` jump between snippet placeholders, otherwise retain normal behavior.
+- Enter remains a newline. Nothing is preselected or inserted while browsing.
+- Documentation appears automatically after selecting a suggestion.
+
+Run `nvim --headless +qa` for a startup smoke test and `:checkhealth blink.cmp`
+for completion diagnostics. Python requires Pyright; C/C++ requires clangd and
+accurate compilation flags as described above.
+
 ## VS Code
 
 When `vim.g.vscode` is set (vscode-neovim), only `lua/miller/vscode.lua` is loaded and
